@@ -8,6 +8,7 @@ const colors = {
     "light-gray": "#A3A3A3",
     "bg-white": "#FBFBFA",
     "dark-blue": "#2F80ED",
+    "document-white": "#F8F8F8",
   },
 };
 

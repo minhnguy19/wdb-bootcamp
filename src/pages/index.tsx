@@ -1,5 +1,6 @@
 import { Container, Heading, Text } from "@chakra-ui/react";
 import NavBar from "@/components/nav-bar";
+import DocumentButtons from "@/components/document-buttons";
 export default function Home() {
   return (
     <main>
@@ -19,6 +20,7 @@ export default function Home() {
           {" "}
           The document editing software you've been waiting for{" "}
         </Text>
+        <DocumentButtons></DocumentButtons>
       </Container>
     </main>
   );
