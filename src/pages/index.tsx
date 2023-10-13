@@ -1,7 +1,14 @@
 import { Container, Heading, Text } from "@chakra-ui/react";
 import NavBar from "@/components/nav-bar";
 import DocumentButtons from "@/components/document-buttons";
+import { useState } from "react";
+export interface DocumentList {
+  text: string;
+}
+
 export default function Home() {
+  const [documentList, setDocumentList] = useState<DocumentList[]>([]);
+
   return (
     <main>
       <Container
@@ -17,10 +24,12 @@ export default function Home() {
           Create. Explore.
         </Heading>
         <Text color="notiom.dark-gray" fontWeight="500" fontSize="2xl">
-          {" "}
-          The document editing software you've been waiting for{" "}
+          The document editing software you've been waiting for
         </Text>
-        <DocumentButtons></DocumentButtons>
+        <DocumentButtons
+          documents={documentList}
+          setDocumentList={setDocumentList}
+        ></DocumentButtons>
       </Container>
     </main>
   );

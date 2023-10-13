@@ -1,60 +1,39 @@
 /** The document button. **/
-import {
-  Box,
-  Button,
-  Image,
-  IconButton,
-  HStack,
-  Heading,
-  VStack,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
+import NewDocument from "./new-document";
+import { DocumentList } from "@/pages";
+import { useState, SetStateAction, Dispatch } from "react";
+interface DocumentButtonsProps {
+  documents: DocumentList[];
+  setDocumentList: Dispatch<SetStateAction<DocumentList[]>>;
+}
+export default function DocumentButtons({
+  documents,
+  setDocumentList,
+}: DocumentButtonsProps) {
+  const handleSave = (input: string) => {
+    setDocumentList((prevState) => [...prevState, { text: input }]);
+  };
 
-export default function DocumentButtons() {
   return (
-    <VStack pt={10} gap={5}>
-      <HStack gap={12}>
-        <Box pr={12}>
-          <IconButton
-            icon={
-              <Image
-                src="/blue-document.svg"
-                boxSize="100px"
-                alt="blue button with white document"
-              ></Image>
-            }
-            aria-label="Blue Document"
-          />
-        </Box>
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-      </HStack>
-      <Spacer />
-      <HStack gap={12}>
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-        <Spacer />
-        <BlankButton></BlankButton>
-      </HStack>
-    </VStack>
+    <Grid
+      mt="50px"
+      width="95%"
+      templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      gap={6}
+    >
+      <NewDocument onSave={handleSave} />
+      {documents.map((doc, index) => (
+        <BlankButton text={doc} key={index} />
+      ))}
+    </Grid>
   );
 }
 
-function BlankButton() {
+interface BlankButtonProps {
+  text: DocumentList;
+}
+function BlankButton({ text }: BlankButtonProps) {
   return (
     <Box
       width="100px"
@@ -72,7 +51,7 @@ function BlankButton() {
       fontWeight="700"
       px={5}
     >
-      Lorem ipsum dolor sit amet, consectetur
+      {text.text}
     </Box>
   );
 }
