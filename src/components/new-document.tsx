@@ -60,7 +60,7 @@ export default function NewDocument({ onSave }: NewDocumentProps) {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent maxW="80vw" maxH="80vh">
           <ModalHeader>New Document</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
